@@ -14,7 +14,7 @@ for img in os.listdir(IMG_DIR):
     img_28x28 = np.array(img_pil.resize((28, 28), Image.ANTIALIAS))
     print(img_28x28)
     img_array = (img_28x28.flatten())
-    
+    print(img_28x28)
     #img_array  = img_array.reshape(-1,1).T
 
     print(img_array)
@@ -26,9 +26,15 @@ for img in os.listdir(IMG_DIR):
 
 
 
+
+
+
+
 from numpy import genfromtxt
-my_data = genfromtxt('my_file.csv', delimiter=',')
+my_data = genfromtxt('C:\\Users\\maxhi\\OneDrive\\Desktop\\CNN\CNN-letter-classification\\test.csv', delimiter=',')
+
+print(my_data)
 
 from PIL import Image
-im = Image.fromarray(A)
-im.save("your_file.jpeg")
+im = Image.fromarray(img_28x28)
+im.save("C:\\Users\\maxhi\\OneDrive\\Desktop\\CNN\CNN-letter-classification\\my_img.jpg")
