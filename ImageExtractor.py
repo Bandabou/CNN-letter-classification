@@ -1,6 +1,6 @@
 #Relevant imports
 
-from email.mime import image
+
 import numpy as np
 from PIL import Image
 import cv2
@@ -18,12 +18,12 @@ def load_image(IMG_DIR):
     global image_list 
     image_list = []
     for img in os.listdir(IMG_DIR):
-        i = 0
-        i = i + 1
+        
         img_array = cv2.imread('C:\\Users\\20183382\\Desktop\\CNN\\CNN-letter-classification\\Images/'+img)
+        gray_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)
         
         #print(img_array)
-        img_pil = Image.fromarray(img_array)
+        img_pil = Image.fromarray(gray_array)
         #print(img_pil)
         img_28x28 = np.array(img_pil.resize((28, 28), Image.ANTIALIAS))
         #print(img_28x28)
@@ -33,7 +33,7 @@ def load_image(IMG_DIR):
         #print(image_list)
         #img_array  = img_array.reshape(-1,1).T
     #print(flat)
-        print("AYOOOOOOOOO CHECK I", i)
+        
         with open('C:\\Users\\20183382\\Desktop\\CNN\\CNN-letter-classification\\tryX.csv', 'a') as f:
             writer = csv.writer(f)
             writer.writerow(flat)
