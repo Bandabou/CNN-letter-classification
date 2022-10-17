@@ -16,20 +16,29 @@ ENCODER = bidict({
 })
 
 app = Flask(__name__)
+app.secret_key = 'DBMhandwriting'
 
 @app.route('/')
 def index():
+    session.clear()
     return render_template("index.html")
 
 @app.route('/add-data', methods=['GET'])
 def add_data_get():
+    message = session.get('message', '')
     letter = choice(list(ENCODER.keys()))
     #image = "eleph.jpg"
-    return render_template("addData.html", letter=letter)
+    return render_template("addData.html", letter=letter, message=message)
 
 @app.route('/add-data', methods=['POST'])
 def add_data_post():
-    print(request.form)
+    label = request.form['letter']
+    print(label)
+    pixels = request.form['pixels']
+    pixels = pixels.split(',')
+    print(len(pixels))
+
+    session['message'] = f'"{label}" added to the word'
     return redirect(url_for("add_data_get"))
 
 if __name__ == '__main__':
