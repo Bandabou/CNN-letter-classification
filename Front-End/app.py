@@ -30,7 +30,7 @@ def add_data_get():
 @app.route('/add-data', methods=['POST'])
 def add_data_post():
     print(request.form)
-    return render_template("addData.html")
+    return redirect(url_for("add_data_get"))
 
 if __name__ == '__main__':
     app.run(debug=True)
